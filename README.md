@@ -8,21 +8,21 @@ Explore US Bikeshare Data
 ### Description
 Python tool to analyse bikeshare data from different cities.
 
-After entering the city name and additional filters for month and weekday it displays the statistics for
+It displays the statistics for
 
-+ The times of travel with most common 
++ the times of travel with most common 
     + month (_only providable if month filter is_ `all`)
     + day if week (_only providable if day of week filter is_ `all`)
     + start hour
 
 
-+ The most polular stations and trips with most common
++ the most polular stations and trips with most common
     + start station
     + end station
     + combination of start and endstation
 
 
-+ Trip durations like
++ trip durations like
     + total time of travels with bikeshare
     + Average travel time
 
