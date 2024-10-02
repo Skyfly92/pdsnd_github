@@ -91,7 +91,7 @@ def load_data(city, month, day):
     #convert start time column to datetime and extract month & dayname in new columns
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['month'] = df['Start Time'].dt.month
-    df['weekday'] = df['Start Time'].dt.weekday_name
+    df['weekday'] = df['Start Time'].dt.day_name()
     
     #filter by month if not 'all' is selected
     if month != 'all':
@@ -218,6 +218,28 @@ def df_parter(df, size):
         yield df.iloc[i:i+size]
     return
 
+def display_raw_data(df):
+    #show raw data in groups of 5 rows if requested
+    while True:
+        try:
+            while input("Do you want to see five rows of raw data(Yes/No)?").title() == "Yes":
+                for part in df_parter(df,5):
+                    print(part)
+                    print('-'*40)
+
+                    while True:
+                        try:
+                            if input("Do you want to see the next five rows of raw data (Yes/No)?").title() != "Yes":
+                                return
+                            break
+                        except:
+                            print("Please respond with yes or no")
+        
+            break
+        except:
+            print("Please answer with yes or no")
+
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -231,32 +253,7 @@ def main():
             trip_duration_stats(df)
             user_stats(df)
             
-            #show raw data in groups of 5 rows if requested
-            while True:
-                try:
-                    question_raw_data = input("Do you want to see five rows of raw data (Yes/No)?").title()
-                    break
-                except:
-                    print("Please respond with yes or no")
-            
-            
-            #if the answer is 'Yes' then show the first 5 rows
-            while question_raw_data ==  "Yes":
-                for part in df_parter(df,5):
-                    print(part)
-                    print('-'*40)
-                 
-                    #ask if the next five rows should be displayed
-                    while True:
-                        try:
-                            question_raw_data = input("Do you want to see the next five rows of raw data(Yes/No)?").title()
-                            break
-                        except:
-                            print("Please respond with yes or no")
-                    
-                    #exit if answer is not 'Yes'
-                    if question_raw_data != "Yes":
-                        break
+            display_raw_data(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
