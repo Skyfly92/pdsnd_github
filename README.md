@@ -40,8 +40,11 @@ After the statistics you are able to look at raw data in blocks of 5 rows.
 ### Filters
 The filter for **city** chooses the csv file to look at. Please be sure of the spelling and that you have the csv for the selected city.
 
-Filter for **month** and **day** need the name of month (like `january`) and weekday (like `monday`) to look at. 
-To see all months and weekdays, just enter `all` on both inputs.
+The filter for **month** needs the name of the month (like `january`)
+
+The filter for **dayname** needs the name of the weekday (like `monday`) 
+
+To see **all months and weekdays**, just enter `all` on both inputs.
 
 If your selected filter left no data to look at, a message inform you about it and let you restart with new filter values.
 
