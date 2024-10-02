@@ -91,7 +91,7 @@ def load_data(city, month, day):
     #convert start time column to datetime and extract month & dayname in new columns
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['month'] = df['Start Time'].dt.month
-    df['weekday'] = df['Start Time'].dt.weekday_name
+    df['weekday'] = df['Start Time'].dt.day_name()
     
     #filter by month if not 'all' is selected
     if month != 'all':
@@ -218,6 +218,7 @@ def df_parter(df, size):
         yield df.iloc[i:i+size]
     return
 
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -231,6 +232,7 @@ def main():
             trip_duration_stats(df)
             user_stats(df)
             
+
             #show raw data in groups of 5 rows if requested
             while True:
                 try:
